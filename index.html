@@ -16,13 +16,21 @@
       /* center the sections */
       section {
         display: flex;
-        flex-direction: row;
+
         align-items: center;
         justify-content: center;
         margin-bottom: 2em;
       }
 
       /* style the buttons */
+      .button-section{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2em;
+      }
+      
       button {
         margin: 0.5em;
         padding: 1em;
@@ -44,15 +52,19 @@
       <h1>RICHARD WALTHER</h1>
       <section>
         <h2>What does a designer do?</h2>
-        <button class="option">Tell stories</button>
-        <button class="option">Eye-catching visuals</button>
-        <button class="option">Immersive experiences</button>
+          <section class="button-section">
+            <button class="option">Tell stories</button>
+            <button class="option">Eye-catching visuals</button>
+            <button class="option">Immersive experiences</button> 
+          </section>
       </section>
       <section>
         <h2>What are you interested in?</h2>
-        <button class="option">Code</button>
-        <button class="option">XR</button>
-        <button class="option">Project management</button>
+          <section class="button-section">
+            <button class="option">Code</button>
+            <button class="option">XR</button>
+            <button class="option">Project management</button>
+          </section>
       </section>
     </div>
     <script>
