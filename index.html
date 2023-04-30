@@ -82,12 +82,12 @@
 		/ function to handle button selection
 		function selectButton(question, button) {
 			// reset other buttons in the group
-			if(question === 1 ){
-				let buttons = document.querySelectorAll(".question:nth-of-type(" + question + ") .button");
-				buttons.forEach(function(btn) {
-					btn.classList.remove("button-selected");
-				});
-			}
+			
+			let buttons = document.querySelectorAll(".question:nth-of-type(" + question + ") .button");
+			buttons.forEach(function(btn) {
+				btn.classList.remove("button-selected");
+			});
+			
 			
 			// select the clicked button
 			let selectedButton = document.querySelector(".question:nth-of-type(" + question + ") .button:nth-of-type(" + button + ")");
