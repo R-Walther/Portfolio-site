@@ -100,3 +100,63 @@
 	</script>
 </body>
 </html>
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Richard Walther</title>
+    <style>
+      /* Center the header and container */
+      header, .container {
+        text-align: center;
+      }
+      /* Style the buttons */
+      button {
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button.selected {
+        background-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>RICHARD WALTHER</h1>
+    </header>
+    <div class="container">
+      <section>
+        <h2>What does a designer do?</h2>
+        <button>tell stories</button>
+        <button>eye-catching visuals</button>
+        <button>immersive experiences</button>
+      </section>
+      <section>
+        <h2>What are you interested in?</h2>
+        <button class="checkbox">code</button>
+        <button class="checkbox">XR</button>
+        <button class="checkbox">project management</button>
+      </section>
+    </div>
+    <script>
+      // Add event listeners to buttons
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          button.classList.toggle('selected');
+        });
+      });
+    </script>
+  </body>
+</html>
+
