@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RICHARD WALTHER</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Center the title */
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>RICHARD WALTHER</h1>
+  <div id="question-container"></div>
+
+  <script>
+    // Question component
+    function QuestionComponent(question, options) {
+      // Store the selected option
+      let selectedOption = null;
+
+      // Create the HTML elements
+      const questionElem = document.createElement("h2");
+      questionElem.textContent = question;
+      const optionsContainer = document.createElement("div");
+      options.forEach((option) => {
+        const buttonElem = document.createElement("button");
+        buttonElem.textContent = option;
+        buttonElem.addEventListener("click", () => {
+          selectedOption = option;
+          renderNextQuestion();
+        });
+        optionsContainer.appendChild(buttonElem);
+      });
+
+      // Render the component
+      const containerElem = document.querySelector("#question-container");
+      containerElem.innerHTML = "";
+      containerElem.appendChild(questionElem);
+      containerElem.appendChild(optionsContainer);
+
+      // Render the next question
+      function renderNextQuestion() {
+        const nextQuestion = getNextQuestion(selectedOption);
+        if (nextQuestion) {
+          QuestionComponent(nextQuestion.question, nextQuestion.options);
+        }
+      }
+    }
+
+    // Define the questions and options
+    const questions = [
+      {
+        question: "Question 1: What is your favorite color?",
+        options: ["Red", "Green", "Blue"],
+        selectedOption: null,
+      },
+      {
+        question: "Question 2: What is your favorite animal?",
+        options: ["Dog", "Cat", "Bird"],
+        selectedOption: null,
+      },
+      {
+        question: "Question 3: What is your favorite food?",
+        options: ["Pizza", "Burger", "Sushi"],
+        selectedOption: null,
+      },
+    ];
+
+    // Get the next question based on the selected option
+    function getNextQuestion(selectedOption) {
+      const nextQuestionIndex = questions.findIndex(
+        (q) => q.selectedOption === null
+      );
+      if (nextQuestionIndex !== -1) {
+        const nextQuestion = questions[nextQuestionIndex];
+        nextQuestion.selectedOption = selectedOption;
+        return nextQuestion;
+      } else {
+        // No more questions
+        return null;
+      }
+    }
+
+    // Start the questionnaire with the first question
+    QuestionComponent(questions[0].question, questions[0].options);
+  </script>
+</body>
+</html>
