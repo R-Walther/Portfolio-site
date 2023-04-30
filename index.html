@@ -4,90 +4,109 @@
 	<title>Richard Walther</title>
 	<style>
 		body {
-			font-family: Arial, sans-serif;
 			margin: 0;
 			padding: 0;
-			text-align: center;
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
 		}
+		
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			text-align: center;
+			padding: 50px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+		}
+		
 		h1 {
 			font-size: 36px;
-			margin-top: 50px;
+			margin-bottom: 30px;
 		}
-		h2 {
+		
+		.question {
 			font-size: 24px;
-			margin-top: 50px;
+			margin-bottom: 20px;
 		}
-		p {
-			font-size: 18px;
-			margin-top: 20px;
+		
+		.button-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			margin-bottom: 50px;
 		}
+		
 		button {
-			background-color: #ccc;
-			border: none;
-			color: #fff;
-			cursor: pointer;
-			margin: 10px;
+			font-size: 18px;
 			padding: 10px 20px;
-			transition: background-color 0.3s ease;
+			margin: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
 		}
-		button.selected {
-			background-color: #f00;
-		}
-		.container {
-			margin: 50px auto;
-			max-width: 800px;
-			text-align: center;
-		}
-		.section {
-			display: none;
+		
+		.selected {
+			background-color: #4CAF50;
+			color: #fff;
 		}
 	</style>
 </head>
 <body>
-	<h1>RICHARD WALTHER</h1>
 	<div class="container">
-		<div class="section" id="section1">
-			<h2>What does a designer do?</h2>
-			<button class="answer" data-section="section2" data-type="single">Tell stories</button>
-			<button class="answer" data-section="section2" data-type="single">Eye-catching visuals</button>
-			<button class="answer" data-section="section2" data-type="single">Immersive experiences</button>
-		</div>
-		<div class="section" id="section2">
-			<h2>What are you interested in?</h2>
-			<button class="answer" data-section="section3" data-type="multiple">Code</button>
-			<button class="answer" data-section="section3" data-type="multiple">XR</button>
-			<button class="answer" data-section="section3" data-type="multiple">Project management</button>
-		</div>
-		<div class="section" id="section3">
-			<h2>What's your style?</h2>
-			<button class="answer" data-type="single">Light mode</button>
-			<button class="answer" data-type="single">Dark mode (goth mode)</button>
-			<button class="answer" data-type="single">Accessible</button>
-		</div>
+		<h1>RICHARD WALTHER</h1>
+		
+		<section>
+			<div class="question">What does a designer do?</div>
+			<div class="button-container">
+				<button class="option" data-option="stories">Tell stories</button>
+				<button class="option" data-option="visuals">Eye-catching visuals</button>
+				<button class="option" data-option="experiences">Immersive experiences</button>
+			</div>
+		</section>
+		
+		<section>
+			<div class="question">What are you interested in?</div>
+			<div class="button-container">
+				<button class="option" data-option="code">Code</button>
+				<button class="option" data-option="XR">XR</button>
+				<button class="option" data-option="management">Project management</button>
+			</div>
+		</section>
+		
 	</div>
+	
 	<script>
-		const answers = {};
-		const answerButtons = document.querySelectorAll('.answer');
-		answerButtons.forEach(button => {
+		let selectedOption = null;
+		let selectedOptions = [];
+		
+		// Add click event listener to all option buttons
+		document.querySelectorAll('.option').forEach(button => {
 			button.addEventListener('click', () => {
-				const section = button.getAttribute('data-section');
-				const type = button.getAttribute('data-type');
-				if (type === 'single') {
-					const selectedButton = document.querySelector(`#${section} .answer.selected`);
-					if (selectedButton) {
-						selectedButton.classList.remove('selected');
+				const option = button.getAttribute('data-option');
+				
+				// Handle single-selection options
+				if (button.parentNode.parentNode.classList.contains('single-select')) {
+					// Unselect previously selected button, if any
+					if (selectedOption) {
+						selectedOption.classList.remove('selected');
+					}
+					
+					// Select the clicked button
+					selectedOption = button;
+					selectedOption.classList.add('selected');
+				}
+				
+				// Handle multi-selection options
+				if (button.parentNode.parentNode.classList.contains('multi-select')) {
+					// Toggle the clicked button's selection status
+					if (selectedOptions.includes(option)) {
+						selectedOptions = selectedOptions.filter(o => o !== option);
+						button.classList.remove('selected');
+					} else {
+						selectedOptions.push(option);
+						button.classList.add('selected');
 					}
 				}
-				button.classList.add('selected');
-				if (section) {
-					const currentSection = document.querySelector(`#${section}`);
-					currentSection.style.display = 'block';
-				} else {
-					answers[button.textContent] = true;
-					console.log(answers);
-				}
-			});
-		});
-	</script>
-</body>
-</html>
+				
+				// Save the selected options
+				console.log('Selected option
