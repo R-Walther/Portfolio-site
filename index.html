@@ -1,91 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RICHARD WALTHER</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    /* Center the title */
-    h1 {
-      text-align: center;
-    }
-  </style>
+	<title>Richard Walther</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		header {
+			text-align: center;
+			font-size: 2em;
+			font-weight: bold;
+			margin-top: 1em;
+		}
+
+		.question {
+			margin-top: 2em;
+			font-size: 1.2em;
+		}
+
+		button {
+			margin: 1em;
+			padding: 0.5em 1em;
+			font-size: 1em;
+			border: none;
+			background-color: #4CAF50;
+			color: white;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #3e8e41;
+		}
+	</style>
 </head>
 <body>
-  <h1>RICHARD WALTHER</h1>
-  <div id="question-container"></div>
+	<header>RICHARD WALTHER</header>
+	<div class="question" id="question1">
+		<p>What does a designer do?</p>
+		<button onclick="showQuestion2('tell stories')">Tell stories</button>
+		<button onclick="showQuestion2('eye-catching visuals')">Eye-catching visuals</button>
+		<button onclick="showQuestion2('immersive experiences')">Immersive experiences</button>
+	</div>
+	<div class="question" id="question2" style="display:none;">
+		<p>What are you interested in?</p>
+		<button onclick="showQuestion3('code')">Code</button>
+		<button onclick="showQuestion3('XR')">XR</button>
+		<button onclick="showQuestion3('project management')">Project management</button>
+	</div>
+	<div class="question" id="question3" style="display:none;">
+		<p>What's your style?</p>
+		<button onclick="setStyle('light')">Light mode</button>
+		<button onclick="setStyle('dark')">Dark mode (goth mode)</button>
+		<button onclick="setStyle('accessibility')">Accessible</button>
+	</div>
+	<script>
+		function showQuestion2(choice) {
+			document.getElementById('question1').style.display = 'none';
+			document.getElementById('question2').style.display = 'block';
+			// do something with choice
+		}
 
-  <script>
-    // Question component
-    function QuestionComponent(question, options) {
-      // Store the selected option
-      let selectedOption = null;
+		function showQuestion3(choice) {
+			document.getElementById('question2').style.display = 'none';
+			document.getElementById('question3').style.display = 'block';
+			// do something with choice
+		}
 
-      // Create the HTML elements
-      const questionElem = document.createElement("h2");
-      questionElem.textContent = question;
-      const optionsContainer = document.createElement("div");
-      options.forEach((option) => {
-        const buttonElem = document.createElement("button");
-        buttonElem.textContent = option;
-        buttonElem.addEventListener("click", () => {
-          selectedOption = option;
-          renderNextQuestion();
-        });
-        optionsContainer.appendChild(buttonElem);
-      });
-
-      // Render the component
-      const containerElem = document.querySelector("#question-container");
-      containerElem.innerHTML = "";
-      containerElem.appendChild(questionElem);
-      containerElem.appendChild(optionsContainer);
-
-      // Render the next question
-      function renderNextQuestion() {
-        const nextQuestion = getNextQuestion(selectedOption);
-        if (nextQuestion) {
-          QuestionComponent(nextQuestion.question, nextQuestion.options);
-        }
-      }
-    }
-
-    // Define the questions and options
-    const questions = [
-      {
-        question: "Question 1: What is your favorite color?",
-        options: ["Red", "Green", "Blue"],
-        selectedOption: null,
-      },
-      {
-        question: "Question 2: What is your favorite animal?",
-        options: ["Dog", "Cat", "Bird"],
-        selectedOption: null,
-      },
-      {
-        question: "Question 3: What is your favorite food?",
-        options: ["Pizza", "Burger", "Sushi"],
-        selectedOption: null,
-      },
-    ];
-
-    // Get the next question based on the selected option
-    function getNextQuestion(selectedOption) {
-      const nextQuestionIndex = questions.findIndex(
-        (q) => q.selectedOption === null
-      );
-      if (nextQuestionIndex !== -1) {
-        const nextQuestion = questions[nextQuestionIndex];
-        nextQuestion.selectedOption = selectedOption;
-        return nextQuestion;
-      } else {
-        // No more questions
-        return null;
-      }
-    }
-
-    // Start the questionnaire with the first question
-    QuestionComponent(questions[0].question, questions[0].options);
-  </script>
+		function setStyle(style) {
+			// do something with style
+		}
+	</script>
 </body>
 </html>
