@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Richard Walther</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f8f8f8;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 20px;
+			text-align: center;
+		}
+
+		h1 {
+			font-size: 48px;
+			margin-top: 0;
+			margin-bottom: 20px;
+		}
+
+		.question {
+			margin-bottom: 20px;
+			text-align: left;
+		}
+
+		.question p {
+			font-size: 24px;
+			margin-bottom: 10px;
+		}
+
+		.btn-group {
+			display: inline-block;
+			vertical-align: middle;
+			margin-left: 20px;
+		}
+
+		.btn-group button {
+			font-size: 18px;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			background-color: #ddd;
+			color: #333;
+			cursor: pointer;
+		}
+
+		.btn-group button.active {
+			background-color: #333;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>RICHARD WALTHER</h1>
+
+		<div class="question">
+			<p>What does a designer do?</p>
+			<div class="btn-group">
+				<button data-answer="stories">tell stories</button>
+				<button data-answer="visuals">eye-catching visuals</button>
+				<button data-answer="experiences">immersive experiences</button>
+			</div>
+		</div>
+
+		<div class="question">
+			<p>What are you interested in?</p>
+			<div class="btn-group">
+				<button data-answer="code">code</button>
+				<button data-answer="xr">XR</button>
+				<button data-answer="management">project management</button>
+			</div>
+		</div>
+
+		<div class="question">
+			<p>What's your style?</p>
+			<div class="btn-group">
+				<button data-answer="light">light mode</button>
+				<button data-answer="dark">dark mode (goth mode)</button>
+				<button data-answer="accessible">accessible</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// add event listeners to all buttons
+		var buttons = document.querySelectorAll('.btn-group button');
+		buttons.forEach(function(button) {
+			button.addEventListener('click', function() {
+				// get the current active button in the group (if any)
+				var group = button.parentNode;
+				var activeButton = group.querySelector('.active');
+
+				if (activeButton) {
+					// deselect the active button
+					activeButton.classList.remove('active');
+				}
+
+				// select the clicked button
+				button.classList.add('active');
+
+				// save the selected answer to local storage
+				var answer = button.getAttribute('data-answer');
+				localStorage.setItem(group.previousElementSibling.textContent.trim(), answer);
+			});
+		});
+	</script>
+</body>
+</html>
