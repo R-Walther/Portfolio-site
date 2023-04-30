@@ -1,74 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Richard Walther</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Richard Walther</title>
 	<style>
-		header {
-			text-align: center;
-			font-size: 2em;
-			font-weight: bold;
-			margin-top: 1em;
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
 		}
 
-		.question {
-			margin-top: 2em;
-			font-size: 1.2em;
+		header {
+			background-color: #f2f2f2;
+			text-align: center;
+			padding: 20px;
+			font-size: 24px;
+			font-weight: bold;
+		}
+
+		#questions {
+			margin: 0 auto;
+			max-width: 800px;
+			padding: 20px;
+			text-align: center;
+			display: none;
 		}
 
 		button {
-			margin: 1em;
-			padding: 0.5em 1em;
-			font-size: 1em;
-			border: none;
 			background-color: #4CAF50;
+			border: none;
 			color: white;
-			border-radius: 5px;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 10px 5px;
 			cursor: pointer;
 		}
 
-		button:hover {
-			background-color: #3e8e41;
+		#q1, #q2, #q3 {
+			display: none;
 		}
 	</style>
 </head>
 <body>
 	<header>RICHARD WALTHER</header>
-	<div class="question" id="question1">
-		<p>What does a designer do?</p>
-		<button onclick="showQuestion2('tell stories')">Tell stories</button>
-		<button onclick="showQuestion2('eye-catching visuals')">Eye-catching visuals</button>
-		<button onclick="showQuestion2('immersive experiences')">Immersive experiences</button>
+	<div id="questions">
+		<div id="q1">
+			<p>What does a designer do?</p>
+			<button id="q1-a1">Tell stories</button>
+			<button id="q1-a2">Eye-catching visuals</button>
+			<button id="q1-a3">Immersive experiences</button>
+		</div>
+		<div id="q2">
+			<p>What are you interested in?</p>
+			<button id="q2-a1">Code</button>
+			<button id="q2-a2">XR</button>
+			<button id="q2-a3">Project management</button>
+		</div>
+		<div id="q3">
+			<p>What's your style?</p>
+			<button id="q3-a1">Light mode</button>
+			<button id="q3-a2">Dark mode (goth mode)</button>
+			<button id="q3-a3">Accessible</button>
+		</div>
+		<button id="submit">Submit</button>
 	</div>
-	<div class="question" id="question2" style="display:none;">
-		<p>What are you interested in?</p>
-		<button onclick="showQuestion3('code')">Code</button>
-		<button onclick="showQuestion3('XR')">XR</button>
-		<button onclick="showQuestion3('project management')">Project management</button>
-	</div>
-	<div class="question" id="question3" style="display:none;">
-		<p>What's your style?</p>
-		<button onclick="setStyle('light')">Light mode</button>
-		<button onclick="setStyle('dark')">Dark mode (goth mode)</button>
-		<button onclick="setStyle('accessibility')">Accessible</button>
-	</div>
+
 	<script>
-		function showQuestion2(choice) {
-			document.getElementById('question1').style.display = 'none';
-			document.getElementById('question2').style.display = 'block';
-			// do something with choice
-		}
+		const q1 = document.getElementById("q1");
+		const q2 = document.getElementById("q2");
+		const q3 = document.getElementById("q3");
+		const q1a1 = document.getElementById("q1-a1");
+		const q1a2 = document.getElementById("q1-a2");
+		const q1a3 = document.getElementById("q1-a3");
+		const q2a1 = document.getElementById("q2-a1");
+		const q2a2 = document.getElementById("q2-a2");
+		const q2a3 = document.getElementById("q2-a3");
+		const q3a1 = document.getElementById("q3-a1");
+		const q3a2 = document.getElementById("q3-a2");
+		const q3a3 = document.getElementById("q3-a3");
+		const submit = document.getElementById("submit");
+		const questions = document.getElementById("questions");
 
-		function showQuestion3(choice) {
-			document.getElementById('question2').style.display = 'none';
-			document.getElementById('question3').style.display = 'block';
-			// do something with choice
-		}
-
-		function setStyle(style) {
-			// do something with style
-		}
-	</script>
-</body>
-</html>
+		q1a1.addEventListener("click", () => {
+			q1.style.display = "none";
+			q2.style.display = "block
