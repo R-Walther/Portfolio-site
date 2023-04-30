@@ -87,10 +87,11 @@
 			buttons.forEach(function(btn) {
 				btn.classList.remove("button-selected");
 			});
-			*/
+			
 			// select the clicked button
 			let selectedButton = document.querySelector(".question:nth-of-type(" + question + ") .button:nth-of-type(" + button + ")");
 			selectedButton.classList.add("button-selected");
+			*/
 			// store response
 			if (question === 1) {
 				responses.question1 = button;
