@@ -34,6 +34,18 @@
 			transition: background-color 0.3s ease;
 		}
 		
+		.checkbox {
+			margin: 10px;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			background-color: #ddd;
+			color: #333;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		
 		.button:focus, .button:hover {
 			background-color: #333;
 			color: #fff;
@@ -63,9 +75,10 @@
 		<div class="question">
 			<p>What are you interested in?</p>
 			<div class="button-group">
-				<button class="button" onclick="selectButton(2, 1)">Code</button>
-				<button class="button" onclick="selectButton(2, 2)">XR</button>
-				<button class="button" onclick="selectButton(2, 3)">Project management</button>
+				<button class="checkbox" onclick="selectButton(2, 1)">Code</button>
+				<button class="checkbox" onclick="selectButton(2, 2)">XR</button>
+				<button class="checkbox" onclick="selectButton(2, 3)">Project management</button>
+	
 			</div>
 		</div>
 	</div>
