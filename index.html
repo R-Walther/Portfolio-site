@@ -1,91 +1,91 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Richard Walther</title>
+	<title>Richard Walther - Designer</title>
 	<style>
 		body {
-			font-family: Arial, sans-serif;
 			margin: 0;
 			padding: 0;
+			font-family: sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+			background-color: #f9f9f9;
+			color: #333;
 		}
-		.container {
-			max-width: 800px;
-			margin: 0 auto;
+		header {
+			text-align: center;
 			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 2px 4px rgba(0,0,0,.2);
 		}
 		h1 {
+			margin: 0;
+			font-size: 2.5em;
+			font-weight: normal;
+		}
+		section {
+			max-width: 800px;
+			margin: 0 auto;
+			padding: 50px 20px;
+			background-color: #fff;
+			box-shadow: 0 2px 4px rgba(0,0,0,.2);
 			text-align: center;
+			opacity: 1;
+			transition: opacity .3s ease-in-out;
 		}
-		.question {
-			display: none;
-			margin: 20px 0;
+		section.hidden {
+			opacity: 0;
+			pointer-events: none;
 		}
-		.buttons {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			margin: 10px 0;
-		}
-		.buttons button {
+		button {
+			display: inline-block;
 			padding: 10px 20px;
 			margin: 10px;
+			background-color: #333;
+			color: #fff;
 			border: none;
-			border-radius: 5px;
-			font-size: 18px;
+			border-radius: 4px;
+			font-size: 1em;
 			cursor: pointer;
-			background-color: #0077CC;
-			color: white;
-			transition: background-color 0.3s ease-in-out;
 		}
-		.buttons button:hover {
-			background-color: #005EA8;
+		button:focus {
+			outline: none;
+		}
+		button.selected {
+			background-color: #ffc107;
+			color: #333;
 		}
 	</style>
 	<script>
-		function showQuestion(num) {
-			document.getElementById("question"+num).style.display = "block";
+		function showQuestion2() {
+			document.querySelector('#question-2').classList.remove('hidden');
 		}
-		function saveResponse(num, response) {
-			localStorage.setItem("question"+num, response);
-			showQuestion(num+1);
+		
+		function showQuestion3() {
+			document.querySelector('#question-3').classList.remove('hidden');
 		}
-		window.onload = function() {
-			if (localStorage.getItem("question1")) {
-				showQuestion(2);
-				if (localStorage.getItem("question2")) {
-					showQuestion(3);
-				}
-			}
-		};
+		
+		function saveAnswers() {
+			var q1answer = document.querySelector('#question-1 button.selected').innerText;
+			var q2answer = document.querySelector('#question-2 button.selected').innerText;
+			var q3answer = document.querySelector('#question-3 button.selected').innerText;
+			console.log("Question 1: " + q1answer);
+			console.log("Question 2: " + q2answer);
+			console.log("Question 3: " + q3answer);
+		}
 	</script>
 </head>
 <body>
-	<div class="container">
+	<header>
 		<h1>RICHARD WALTHER</h1>
-		<div class="question" id="question1">
-			<h2>What does a designer do?</h2>
-			<div class="buttons">
-				<button onclick="saveResponse(1, 'tell stories')">Tell stories</button>
-				<button onclick="saveResponse(1, 'eye-catching visuals')">Eye-catching visuals</button>
-				<button onclick="saveResponse(1, 'immersive experiences')">Immersive experiences</button>
-			</div>
-		</div>
-		<div class="question" id="question2">
-			<h2>What are you interested in?</h2>
-			<div class="buttons">
-				<button onclick="saveResponse(2, 'code')">Code</button>
-				<button onclick="saveResponse(2, 'XR')">XR</button>
-				<button onclick="saveResponse(2, 'project management')">Project management</button>
-			</div>
-		</div>
-		<div class="question" id="question3">
-			<h2>What's your style?</h2>
-			<div class="buttons">
-				<button onclick="saveResponse(3, 'light mode')">Light mode</button>
-				<button onclick="saveResponse(3, 'dark mode (goth mode)')">Dark mode (goth mode)</button>
-				<button onclick="saveResponse(3, 'accessible')">Accessible</button>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+	</header>
+	<section>
+		<h2>What does a designer do?</h2>
+		<button onclick="document.querySelector('#question-1 button.selected').classList.remove('selected'); this.classList.add('selected'); showQuestion2();">Tell stories</button>
+		<button onclick="document.querySelector('#question-1 button.selected').classList.remove('selected'); this.classList.add('selected'); showQuestion2();">Eye-catching visuals</button>
+		<button onclick="document.querySelector('#question-1 button.selected').classList.remove('selected'); this.classList.add('selected'); showQuestion2();">Immersive experiences</button>
+	</section>
+	<section id="question-2" class="hidden">
+		<h2>What are you interested in?</h2>
+		<button onclick="document.querySelector('#question-2 button.selected').classList.remove('selected'); this.classList.add('selected'); showQuestion3();">Code</button>
+		
