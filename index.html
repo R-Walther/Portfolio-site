@@ -34,17 +34,6 @@
 			transition: background-color 0.3s ease;
 		}
 		
-		.checkbox {
-			margin: 10px;
-			padding: 10px 20px;
-			border: none;
-			border-radius: 5px;
-			background-color: #ddd;
-			color: #333;
-			font-size: 16px;
-			cursor: pointer;
-			transition: background-color 0.3s ease;
-		}
 		
 		.button:focus, .button:hover {
 			background-color: #333;
@@ -75,7 +64,7 @@
 		<div class="question">
 			<p>What are you interested in?</p>
 			<div class="button-group">
-				<button class="button"  type="checkbox" onclick="selectButton(2, 1)">Code</button>
+				<button class="button" type="checkbox" onclick="selectButton(2, 1)">Code</button>
 				<button class="button" type="checkbox" onclick="selectButton(2, 2)">XR</button>
 				<button class="button" type="checkbox" onclick="selectButton(2, 3)">Project management</button>
 	
@@ -90,29 +79,29 @@
 			question2: []
 		};
 		
-		// function to handle button selection
 		function selectButton(question, button) {
-			// reset other buttons in the group
-			let buttons = document.querySelectorAll(".question:nth-of-type(" + question + ") .button");
-			buttons.forEach(function(btn) {
-				btn.classList.remove("button-selected");
-			});
-			// select the clicked button
-			let selectedButton = document.querySelector(".question:nth-of-type(" + question + ") .button:nth-of-type(" + button + ")");
-			selectedButton.classList.add("button-selected");
-			// store response
-			if (question === 1) {
-				responses.question1 = button;
-			} else if (question === 2) {
-				let index = responses.question2.indexOf(button);
-				
-				if (index > -1) {
-					//responses.question2.splice(index, 1);
-				} else {
-					responses.question2.push(button);
-				}
-			}
-			console.log(responses);
+			  // reset other buttons in the group
+			  let buttons = document.querySelectorAll(".question:nth-of-type(" + question + ") .button");
+			  buttons.forEach(function(btn) {
+			    if (question === 1 || btn.classList.contains("button-selected")) {
+			      btn.classList.remove("button-selected");
+			    }
+			  });
+			  // select the clicked button
+			  let selectedButton = document.querySelector(".question:nth-of-type(" + question + ") .button:nth-of-type(" + button + ")");
+			  selectedButton.classList.add("button-selected");
+			  // store response
+			  if (question === 1) {
+			    responses.question1 = button;
+			  } else if (question === 2) {
+			    let index = responses.question2.indexOf(button);
+			    if (index > -1) {
+			      //responses.question2.splice(index, 1);
+			    } else {
+			      responses.question2.push(button);
+			    }
+			  }
+		  console.log(responses);
 		}
 	</script>
 </body>
