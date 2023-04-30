@@ -56,9 +56,9 @@
 		<div class="question">
 			<p>What does a designer do?</p>
 			<div class="button-group">
-				<button class="button" onclick="selectButton(1, 1)">Tell stories</button>
-				<button class="button" onclick="selectButton(1, 2)">Eye-catching visuals</button>
-				<button class="button" onclick="selectButton(1, 3)">Immersive experiences</button>
+				<button class="button" type="radio" onclick="selectButton(1, 1)">Tell stories</button>
+				<button class="button" type="radio" onclick="selectButton(1, 2)">Eye-catching visuals</button>
+				<button class="button" type="radio" onclick="selectButton(1, 3)">Immersive experiences</button>
 			</div>
 		</div>
 		<div class="question">
@@ -79,29 +79,29 @@
 			question2: []
 		};
 		
+		/ function to handle button selection
 		function selectButton(question, button) {
-			  // reset other buttons in the group
-			  let buttons = document.querySelectorAll(".question:nth-of-type(" + question + ") .button");
-			  buttons.forEach(function(btn) {
-			    if (question === 1 || btn.classList.contains("button-selected")) {
-			      btn.classList.remove("button-selected");
-			    }
-			  });
-			  // select the clicked button
-			  let selectedButton = document.querySelector(".question:nth-of-type(" + question + ") .button:nth-of-type(" + button + ")");
-			  selectedButton.classList.add("button-selected");
-			  // store response
-			  if (question === 1) {
-			    responses.question1 = button;
-			  } else if (question === 2) {
-			    let index = responses.question2.indexOf(button);
-			    if (index > -1) {
-			      //responses.question2.splice(index, 1);
-			    } else {
-			      responses.question2.push(button);
-			    }
-			  }
-		  console.log(responses);
+			// reset other buttons in the group
+			let buttons = document.querySelectorAll(".question:nth-of-type(" + question + ") .button");
+			buttons.forEach(function(btn) {
+				btn.classList.remove("button-selected");
+			});
+			// select the clicked button
+			let selectedButton = document.querySelector(".question:nth-of-type(" + question + ") .button:nth-of-type(" + button + ")");
+			selectedButton.classList.add("button-selected");
+			// store response
+			if (question === 1) {
+				responses.question1 = button;
+			} else if (question === 2) {
+				let index = responses.question2.indexOf(button);
+				
+				if (index > -1) {
+					responses.question2.splice(index, 1);
+				} else {
+					responses.question2.push(button);
+				}
+			}
+			console.log(responses);
 		}
 	</script>
 </body>
