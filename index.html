@@ -23,14 +23,8 @@
         text-align: center;
       }
 
-      /* Section 1 */
-      .section1 {
-        margin-top: 30px;
-        text-align: center;
-      }
-
-      /* Section 2 */
-      .section2 {
+      /* Sections */
+      .section {
         margin-top: 30px;
         text-align: center;
       }
@@ -56,17 +50,23 @@
   <body>
     <div class="container">
       <h1>RICHARD WALTHER</h1>
-      <div class="section1">
+      <div class="section">
         <p>What does a designer do?</p>
         <button id="btn1" onclick="selectButton('btn1')">Tell stories</button>
         <button id="btn2" onclick="selectButton('btn2')">Eye-catching visuals</button>
         <button id="btn3" onclick="selectButton('btn3')">Immersive experiences</button>
       </div>
-      <div class="section2">
+      <div class="section">
         <p>What are you interested in?</p>
         <button id="btn4" onclick="toggleButton('btn4')">Code</button>
         <button id="btn5" onclick="toggleButton('btn5')">XR</button>
         <button id="btn6" onclick="toggleButton('btn6')">Project management</button>
+      </div>
+      <div class="section">
+        <p>What is your favorite design tool?</p>
+        <button id="btn7" onclick="selectButton('btn7')">Adobe Photoshop</button>
+        <button id="btn8" onclick="selectButton('btn8')">Figma</button>
+        <button id="btn9" onclick="selectButton('btn9')">Sketch</button>
       </div>
     </div>
     
@@ -95,14 +95,6 @@
       }
 
       // Load previously selected buttons from localStorage
-      let selectedBtnIds = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6'];
+      let selectedBtnIds = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6', 'btn7', 'btn8', 'btn9'];
       selectedBtnIds.forEach(function(btnId) {
-        let isSelected = localStorage.getItem(btnId) === 'true';
-        let btn = document.getElementById(btnId);
-        if (isSelected) {
-          btn.classList.add('selected');
-        }
-      });
-    </script>
-  </body>
-</html>
+        let isSelected
