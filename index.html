@@ -70,6 +70,14 @@
 	
 			</div>
 		</div>
+		<div class="question">
+			<p>What is your style?</p>
+			<div class="button-group">
+				<button class="button" type="radio" onclick="selectButton(3, 1)">Light Mode</button>
+				<button class="button" type="radio" onclick="selectButton(3, 2)">Dark Mode</button>
+				<button class="button" type="radio" onclick="selectButton(3, 3)">Accesibility Mode</button>
+			</div>
+		</div>
 	</div>
 	
 	<script>
@@ -78,6 +86,7 @@
 	let responses = {
 	question1: null,
 	question2: []
+	question3: null,
 	};
 
 	// function to handle button selection
@@ -95,7 +104,11 @@
 		// store response
 		if (question === 1) {
 			responses.question1 = button;
-		} else if (question === 2) {
+		} 
+		if (question === 3) {
+			responses.question3 = button;
+		}
+		else if (question === 2) {
 			let index = responses.question2.indexOf(button);
 
 			if (index > -1) {
