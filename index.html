@@ -83,17 +83,17 @@
 	
 	
 	<div class="card-container">
-	  	<div class="card" skill="code" focus="beginner">
-		  <h2>Card title</h2>
-		  <p>Card description</p>
-		</div>
-		<div class="card" skill="XR" focus="code">
-		  <h2>Card title2</h2>
-		  <p>Card description2</p>
-		</div>
-		<div class="card" skill="Project management" focus="storytelling">
-		  <h2>Card title3</h2>
-		  <p>Card description3</p>
+ 		 <div class="card" interests="Tell stories, Eye-catching visuals" experience="Intermediate">
+   			 <h2>Card title 1</h2>
+  			 <p>Card description 1</p>
+		 </div>
+		 <div class="card" interests="Immersive experiences, Eye-catching visuals" experience="Beginner">
+		    	<h2>Card title 2</h2>
+		    	<p>Card description 2</p>
+		 </div>
+		 <div class="card" interests="Tell stories, Project management" experience="Advanced">
+		    	<h2>Card title 3</h2>
+		    	<p>Card description 3</p>
 		</div>
 	</div>
 	
@@ -139,22 +139,41 @@
 		
 		
 	function sortCards() {
-		const selectedSkill = document.getElementById("skill-select").value;
-		const selectedFocus = document.getElementById("focus-select").value;
+		  const cardsContainer = document.querySelector(".card-container");
+		  const cards = Array.from(cardsContainer.querySelectorAll(".card"));
 
-		const cards = document.querySelectorAll(".card");
+		  cards.sort(function(cardA, cardB) {
+		    const selectedSkills = getSelectedValues("#skills-select");
+		    const selectedFocuses = getSelectedValues("#focuses-select");
 
-		cards.forEach(card => {
-		const cardSkill = card.getAttribute("skill");
-		const cardFocus = card.getAttribute("focus");
+		    let cardAScore = 0;
+		    let cardBScore = 0;
 
-		if ((selectedSkill === "all" || selectedSkill === cardSkill) && (selectedFocus === "all" || selectedFocus === cardFocus)) {
-		  card.style.display = "block";
-		} else {
-		      card.style.display = "none";
-		    }
+		    selectedSkills.forEach(function(skill) {
+		      if (cardA.getAttribute("skill").includes(skill)) {
+			cardAScore++;
+		      }
+		      if (cardB.getAttribute("skill").includes(skill)) {
+			cardBScore++;
+		      }
+		    });
+
+		    selectedFocuses.forEach(function(focus) {
+		      if (cardA.getAttribute("focus").includes(focus)) {
+			cardAScore++;
+		      }
+		      if (cardB.getAttribute("focus").includes(focus)) {
+			cardBScore++;
+		      }
+		    });
+
+		    return cardBScore - cardAScore;
 		  });
-		}
+
+		  cards.forEach(function(card) {
+		    cardsContainer.appendChild(card);
+		  });
+	}
 		
 		
 	</script>
