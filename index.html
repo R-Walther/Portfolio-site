@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Richard Walther - Designer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      /* Centered container */
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        max-width: 600px;
+        padding: 20px;
+      }
+
+      /* Centered header */
+      h1 {
+        text-align: center;
+      }
+
+      /* Section 1 */
+      .section1 {
+        margin-top: 30px;
+        text-align: center;
+      }
+
+      /* Section 2 */
+      .section2 {
+        margin-top: 30px;
+        text-align: center;
+      }
+
+      /* Button styles */
+      button {
+        background-color: #eee;
+        border: none;
+        color: #333;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 5px;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+      }
+
+      button.selected {
+        background-color: #f00;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>RICHARD WALTHER</h1>
+      <div class="section1">
+        <p>What does a designer do?</p>
+        <button id="btn1" onclick="selectButton('btn1')">Tell stories</button>
+        <button id="btn2" onclick="selectButton('btn2')">Eye-catching visuals</button>
+        <button id="btn3" onclick="selectButton('btn3')">Immersive experiences</button>
+      </div>
+      <div class="section2">
+        <p>What are you interested in?</p>
+        <button id="btn4" onclick="toggleButton('btn4')">Code</button>
+        <button id="btn5" onclick="toggleButton('btn5')">XR</button>
+        <button id="btn6" onclick="toggleButton('btn6')">Project management</button>
+      </div>
+    </div>
+    
+    <script>
+      // Button selection functions
+      function selectButton(btnId) {
+        // Deselect previously selected button
+        let selectedBtn = document.querySelector('button.selected');
+        if (selectedBtn) {
+          selectedBtn.classList.remove('selected');
+        }
+        // Select new button
+        let btn = document.getElementById(btnId);
+        btn.classList.add('selected');
+        // Save selection to localStorage
+        localStorage.setItem(btnId, true);
+      }
+
+      function toggleButton(btnId) {
+        // Toggle button selection
+        let btn = document.getElementById(btnId);
+        btn.classList.toggle('selected');
+        // Save selection to localStorage
+        let isSelected = btn.classList.contains('selected');
+        localStorage.setItem(btnId, isSelected);
+      }
+
+      // Load previously selected buttons from localStorage
+      let selectedBtnIds = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6'];
+      selectedBtnIds.forEach(function(btnId) {
+        let isSelected = localStorage.getItem(btnId) === 'true';
+        let btn = document.getElementById(btnId);
+        if (isSelected) {
+          btn.classList.add('selected');
+        }
+      });
+    </script>
+  </body>
+</html>
