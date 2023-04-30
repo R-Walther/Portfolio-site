@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Richard Walther - Designer</title>
+    <title>Richard Walther</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
       body {
@@ -29,7 +29,19 @@
         text-align: center;
       }
 
-      /* Button styles */
+      /* Questions */
+      .question {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      /* Buttons */
+      .btn-group {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
       button {
         background-color: #eee;
         border: none;
@@ -50,51 +62,119 @@
   <body>
     <div class="container">
       <h1>RICHARD WALTHER</h1>
-      <div class="section">
-        <p>What does a designer do?</p>
-        <button id="btn1" onclick="selectButton('btn1')">Tell stories</button>
-        <button id="btn2" onclick="selectButton('btn2')">Eye-catching visuals</button>
-        <button id="btn3" onclick="selectButton('btn3')">Immersive experiences</button>
+
+      
+      
+            <div class="section">
+        <div class="question">What does a designer do?</div>
+        <div class="btn-group">
+          <button id="btn1" onclick="selectButton('btn1')">Tell stories</button>
+          <button id="btn2" onclick="selectButton('btn2')">Eye-catching visuals</button>
+          <button id="btn3" onclick="selectButton('btn3')">Immersive experiences</button>
+        </div>
+      </div>
+
+            <div class="section">
+        <div class="question">What are you interested in?</div>
+        <div class="btn-group">
+          <button id="btn4" onclick="toggleButton('btn4')">Code</button>
+          <button id="btn5" onclick="toggleButton('btn5')">XR</button>
+          <button id="btn6" onclick="toggleButton('btn6')">Project management</button>
+        </div>
       </div>
       <div class="section">
-        <p>What are you interested in?</p>
-        <button id="btn4" onclick="toggleButton('btn4')">Code</button>
-        <button id="btn5" onclick="toggleButton('btn5')">XR</button>
-        <button id="btn6" onclick="toggleButton('btn6')">Project management</button>
-      </div>
-      <div class="section">
-        <p>What is your favorite design tool?</p>
-        <button id="btn7" onclick="selectButton('btn7')">Adobe Photoshop</button>
-        <button id="btn8" onclick="selectButton('btn8')">Figma</button>
-        <button id="btn9" onclick="selectButton('btn9')">Sketch</button>
+        <div class="question">What's your style?</div>
+        <div class="btn-group">
+          <button id="btn7" onclick="selectButton('btn7')">Light mode</button>
+          <button id="btn8" onclick="selectButton('btn8')">Dark mode (goth mode)</button>
+          <button id="btn9" onclick="selectButton('btn9')">Accessible mode</button>
+        </div>
       </div>
     </div>
-    
+
     <script>
       // Button selection functions
       function selectButton(btnId) {
-        // Deselect previously selected button
-        let selectedBtn = document.querySelector('button.selected');
-        if (selectedBtn) {
-          selectedBtn.classList.remove('selected');
-        }
-        // Select new button
-        let btn = document.getElementById(btnId);
-        btn.classList.add('selected');
-        // Save selection to localStorage
-        localStorage.setItem(btnId, true);
+        // Deselect
+      /* Question 3 */
+      .question-3 {
+        margin-top: 2rem;
+        font-size: 1.2rem;
+        font-weight: bold;
       }
 
-      function toggleButton(btnId) {
-        // Toggle button selection
-        let btn = document.getElementById(btnId);
-        btn.classList.toggle('selected');
-        // Save selection to localStorage
-        let isSelected = btn.classList.contains('selected');
-        localStorage.setItem(btnId, isSelected);
+      .question-3 button {
+        background-color: #eee;
+        color: #333;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 0.5rem;
+        margin: 0 1rem;
+        cursor: pointer;
       }
 
-      // Load previously selected buttons from localStorage
-      let selectedBtnIds = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn6', 'btn7', 'btn8', 'btn9'];
-      selectedBtnIds.forEach(function(btnId) {
-        let isSelected
+      .question-3 button.selected {
+        background-color: #333;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>RICHARD WALTHER</h1>
+      <div class="question-1">
+        <p>What does a designer do?</p>
+        <button>Tell stories</button>
+        <button>Eye-catching visuals</button>
+        <button>Immersive experiences</button>
+      </div>
+      <div class="question-2">
+        <p>What are you interested in?</p>
+        <button>Code</button>
+        <button>XR</button>
+        <button>Project management</button>
+      </div>
+      <div class="question-3">
+        <p>What's your style?</p>
+        <button>Light mode</button>
+        <button>Dark mode (goth mode)</button>
+        <button>Accessible mode</button>
+      </div>
+    </div>
+    <script>
+      // Question 1: allow only one button to be selected at a time
+      const question1Buttons = document.querySelectorAll('.question-1 button');
+      question1Buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          question1Buttons.forEach((otherButton) => {
+            if (otherButton !== button) {
+              otherButton.classList.remove('selected');
+            }
+          });
+          button.classList.add('selected');
+        });
+      });
+
+      // Question 2: allow multiple buttons to be selected
+      const question2Buttons = document.querySelectorAll('.question-2 button');
+      question2Buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          button.classList.toggle('selected');
+        });
+      });
+
+      // Question 3: allow only one button to be selected at a time
+      const question3Buttons = document.querySelectorAll('.question-3 button');
+      question3Buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          question3Buttons.forEach((otherButton) => {
+            if (otherButton !== button) {
+              otherButton.classList.remove('selected');
+            }
+          });
+          button.classList.add('selected');
+        });
+      });
+    </script>
+  </body>
+</html>
