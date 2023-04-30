@@ -118,29 +118,51 @@
         text-align: center;
       }
       /* Style the buttons */
-      button {
-        background-color: white;
-        color: black;
-        border: 2px solid black;
-        padding: 10px 20px;
-        margin: 5px;
-        font-size: 16px;
-        cursor: pointer;
-      }
-      button.selected {
-        background-color: black;
-        color: white;
-      }
-	    
+      .button-group {
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.button {
+		margin: 10px;
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		background-color: #ddd;
+		color: #333;
+		font-size: 16px;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+	.button:focus, .button:hover {
+		background-color: #333;
+		color: #fff;
+		outline: none;
+	}
+
+	.button-selected {
+		background-color: #333;
+		color: #fff;
+	}
+
 	    
 	    
   /* Style the cards */    
 	.fullclick li {
 	  list-style: none;
-	  margin: 1em 0;
-	  padding: 20px 10px;
-	  background: #2b2b2b;
-	  position: relative;
+	margin: 1em 0;
+	margin: 10px;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #ddd;
+	color: #333;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 	}
 	.fullclick a.main {
 	  color: #85baff;
