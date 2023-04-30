@@ -135,6 +135,33 @@
 		}
 		console.log(responses);
 	}
+		
+		
+		
+	// get the card container and cards
+	const cardContainer = document.querySelector(".card-container");
+	const cards = document.querySelectorAll(".card");
+
+		// sort the cards based on the response to question2
+		if (responses.question2.includes(1)) {
+		  // move cards that are related to code to the beginning
+		  cards[0].before(cards[2]);
+		  cards[1].before(cards[2]);
+		} else if (responses.question2.includes(2)) {
+		  // move cards that are related to XR to the beginning
+		  cards[1].before(cards[0]);
+		  cards[2].before(cards[0]);
+		} else if (responses.question2.includes(3)) {
+		  // move cards that are related to project management to the beginning
+		  cards[2].before(cards[0]);
+		  cards[2].before(cards[1]);
+		}
+
+	// update the DOM
+	cardContainer.innerHTML = "";
+	cards.forEach(card => cardContainer.appendChild(card));
+		
+		
 	</script>
 </body>
 </html>
