@@ -78,22 +78,19 @@
 				<button class="button" type="radio" onclick="selectButton(3, 3)">Accesibility Mode</button>
 			</div>
 		</div>
+		<button onclick="sortCards()">Sort cards</button>
 	</div>
 	
 	
 	<div class="card-container">
-	  	<div class="card">
-		    	<h2>Card 1</h2>
-		    	<p>Content for card 1</p>
-	  	</div>
-	  	<div class="card">
-		    	<h2>Card 2</h2>
-		    	<p>Content for card 2</p>
-	  	</div>
-	  	<div class="card">
-		    	<h2>Card 3</h2>
-		    	<p>Content for card 3</p>
-	  	</div>
+	  	<div class="card" data-interests="code" data-experience="beginner">
+		  <h2>Card title</h2>
+		  <p>Card description</p>
+		</div>
+		<div class="card" data-interests="code" data-experience="beginner">
+		  <h2>Card title2</h2>
+		  <p>Card description2</p>
+		</div>
 	</div>
 	
 	<script>
@@ -137,29 +134,37 @@
 	}
 		
 		
-		
-	// get the card container and cards
-	const cardContainer = document.querySelector(".card-container");
-	const cards = document.querySelectorAll(".card");
+	function sortCards() {
+		  const cardsContainer = document.querySelector('.cards-container');
+		  const cards = Array.from(cardsContainer.children);
 
-		// sort the cards based on the response to question2
-		if (responses.question2.includes(1)) {
-		  // move cards that are related to code to the beginning
-		  cards[0].before(cards[2]);
-		  cards[1].before(cards[2]);
-		} else if (responses.question2.includes(2)) {
-		  // move cards that are related to XR to the beginning
-		  cards[1].before(cards[0]);
-		  cards[2].before(cards[0]);
-		} else if (responses.question2.includes(3)) {
-		  // move cards that are related to project management to the beginning
-		  cards[2].before(cards[0]);
-		  cards[2].before(cards[1]);
-		}
+		  // Sort by interests (question2)
+		  const interests = responses.question2;
+		  cards.sort((a, b) => {
+		    const aInterests = a.getAttribute('data-interests').split(' ');
+		    const bInterests = b.getAttribute('data-interests').split(' ');
+		    const aScore = aInterests.filter(interest => interests.includes(interest)).length;
+		    const bScore = bInterests.filter(interest => interests.includes(interest)).length;
+		    return bScore - aScore;
+		  });
 
-	// update the DOM
-	cardContainer.innerHTML = "";
-	cards.forEach(card => cardContainer.appendChild(card));
+		  // Sort by experience level (question1)
+		  const experience = responses.question1;
+		  cards.sort((a, b) => {
+		    const aExperience = a.getAttribute('data-experience');
+		    const bExperience = b.getAttribute('data-experience');
+		    if (aExperience === experience && bExperience !== experience) {
+		      return -1;
+		    } else if (aExperience !== experience && bExperience === experience) {
+		      return 1;
+		    } else {
+		      return 0;
+		    }
+		  });
+
+		  // Update the DOM with the sorted cards
+		  cards.forEach(card => cardsContainer.appendChild(card));
+	}
 		
 		
 	</script>
