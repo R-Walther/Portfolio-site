@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Richard Walther</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f2f2f2;
+			color: #333;
+		}
+		.container {
+			max-width: 960px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		h1 {
+			text-align: center;
+			font-size: 36px;
+			margin-bottom: 40px;
+		}
+		.question-section {
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		.question {
+			font-size: 24px;
+			margin-bottom: 20px;
+		}
+		.button-group {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+		.button {
+			padding: 10px 20px;
+			font-size: 18px;
+			margin: 10px;
+			background-color: #ddd;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.button:hover {
+			background-color: #ccc;
+		}
+		.selected {
+			background-color: #4CAF50;
+			color: white;
+		}
+		.answer-section {
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		.answer {
+			font-size: 24px;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>RICHARD WALTHER</h1>
+		<div class="question-section">
+			<div class="question visible">
+				<p>What does a designer do?</p>
+				<div class="button-group">
+					<button class="button tell-stories">Tell stories</button>
+					<button class="button eye-catching-visuals">Eye-catching visuals</button>
+					<button class="button immersive-experiences">Immersive experiences</button>
+				</div>
+			</div>
+			<div class="question">
+				<p>What are you interested in?</p>
+				<div class="button-group">
+					<button class="button code">Code</button>
+					<button class="button xr">XR</button>
+					<button class="button project-management">Project management</button>
+				</div>
+			</div>
+			<div class="question">
+				<p>What's your style?</p>
+				<div class="button-group">
+					<button class="button light-mode">Light mode</button>
+					<button class="button dark-mode">Dark mode (goth mode)</button>
+					<button class="button accessible">Accessible</button>
+				</div>
+			</div>
+		</div>
+		<div class="answer-section">
+			<div class="answer tell-stories hidden">
+				<p>You're interested in telling stories!</p>
+			</div>
+			<div class="answer eye-catching-visuals hidden">
+				<p>You're interested in creating eye-catching visuals!</p>
+			</div>
+			<div class="answer immersive-experiences hidden">
+				<p>You're interested in creating immersive experiences!</p>
+			</div>
+			<div class="answer code hidden">
