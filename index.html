@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Richard Walther</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			text-align: center;
+		}
+		h1 {
+			font-size: 36px;
+			margin-top: 50px;
+		}
+		h2 {
+			font-size: 24px;
+			margin-top: 50px;
+		}
+		p {
+			font-size: 18px;
+			margin-top: 20px;
+		}
+		button {
+			background-color: #ccc;
+			border: none;
+			color: #fff;
+			cursor: pointer;
+			margin: 10px;
+			padding: 10px 20px;
+			transition: background-color 0.3s ease;
+		}
+		button.selected {
+			background-color: #f00;
+		}
+		.container {
+			margin: 50px auto;
+			max-width: 800px;
+			text-align: center;
+		}
+		.section {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<h1>RICHARD WALTHER</h1>
+	<div class="container">
+		<div class="section" id="section1">
+			<h2>What does a designer do?</h2>
+			<button class="answer" data-section="section2" data-type="single">Tell stories</button>
+			<button class="answer" data-section="section2" data-type="single">Eye-catching visuals</button>
+			<button class="answer" data-section="section2" data-type="single">Immersive experiences</button>
+		</div>
+		<div class="section" id="section2">
+			<h2>What are you interested in?</h2>
+			<button class="answer" data-section="section3" data-type="multiple">Code</button>
+			<button class="answer" data-section="section3" data-type="multiple">XR</button>
+			<button class="answer" data-section="section3" data-type="multiple">Project management</button>
+		</div>
+		<div class="section" id="section3">
+			<h2>What's your style?</h2>
+			<button class="answer" data-type="single">Light mode</button>
+			<button class="answer" data-type="single">Dark mode (goth mode)</button>
+			<button class="answer" data-type="single">Accessible</button>
+		</div>
+	</div>
+	<script>
+		const answers = {};
+		const answerButtons = document.querySelectorAll('.answer');
+		answerButtons.forEach(button => {
+			button.addEventListener('click', () => {
+				const section = button.getAttribute('data-section');
+				const type = button.getAttribute('data-type');
+				if (type === 'single') {
+					const selectedButton = document.querySelector(`#${section} .answer.selected`);
+					if (selectedButton) {
+						selectedButton.classList.remove('selected');
+					}
+				}
+				button.classList.add('selected');
+				if (section) {
+					const currentSection = document.querySelector(`#${section}`);
+					currentSection.style.display = 'block';
+				} else {
+					answers[button.textContent] = true;
+					console.log(answers);
+				}
+			});
+		});
+	</script>
+</body>
+</html>
