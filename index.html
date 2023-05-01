@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		.container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		
+		.question {
+			margin-top: 20px;
+			margin-bottom: 10px;
+			font-weight: bold;
+			text-align: center;
+		}
+		
+		.button-group {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.button {
+			margin: 10px;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			background-color: #ddd;
+			color: #333;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		
+		
+		.button:focus, .button:hover {
+			background-color: #333;
+			color: #fff;
+			outline: none;
+		}
+		
+		.button-selected {
+			background-color: #333;
+			color: #fff;
+		}
+		/* For mobile devices */
+		.card-container {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.card {
+			margin: 10px;
+			padding: 10px;
+			border: 1px solid black;
+			background-color: #fff;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			transition: 0.3s;
+			width: 300px;
+			height: 400px;
+			margin: 10px;
+			border-radius: 5px;
+			overflow: hidden;
+		}
+		
+		/* For desktop devices */
+		@media only screen and (min-width: 768px) {
+			.card-container {
+				flex-wrap: wrap;
+				justify-content: center;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+			}
+
+			.card {
+				flex-basis: calc(33.33% - 20px);
+				background-color: #fff;
+				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+				transition: 0.3s;
+				width: 300px;
+				height: 400px;
+				margin: 10px;
+				border-radius: 5px;
+				overflow: hidden;
+			}
+		}
+		
+		.card img {
+		  width: 100%;
+		  height: 200px;
+		  object-fit: cover;
+		}
+
+		.card h2 {
+		  font-size: 24px;
+		  margin: 10px;
+		}
+
+		.card p {
+		  font-size: 18px;
+		  margin: 10px;
+		}
+		
+		
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>RICHARD WALTHER</h1>
+		<div class="question">
+			<p>What does a designer do?</p>
+			<div class="button-group">
+				<button class="button" type="radio" onclick="selectButton(1, 1)">Tell stories</button>
+				<button class="button" type="radio" onclick="selectButton(1, 2)">Eye-catching visuals</button>
+				<button class="button" type="radio" onclick="selectButton(1, 3)">Immersive experiences</button>
+			</div>
+		</div>
+		<div class="question">
+			<p>What are you interested in?</p>
+			<div class="button-group">
+				<button class="button" type="checkbox" onclick="selectButton(2, 1)">Code</button>
+				<button class="button" type="checkbox" onclick="selectButton(2, 2)">XR</button>
+				<button class="button" type="checkbox" onclick="selectButton(2, 3)">Project management</button>
+	
+			</div>
+		</div>
+		<div class="question">
+			<p>What is your style?</p>
+			<div class="button-group">
+				<button class="button" type="radio" onclick="selectButton(3, 1)">Light Mode</button>
+				<button class="button" type="radio" onclick="selectButton(3, 2)">Dark Mode</button>
+				<button class="button" type="radio" onclick="selectButton(3, 3)">Accesibility Mode</button>
+			</div>
+		</div>
+		<button onclick="sortCards()">Sort cards</button>
+	</div>
+	
+	
+	<div class="card-container">
+ 		 <div class="card" interests="Tell stories, Eye-catching visuals" experience="Intermediate">
+   			 <h2>Card title 1</h2>
+  			 <p>Card description 1</p>
+		 </div>
+		 <div class="card" interests="Immersive experiences, Eye-catching visuals" experience="Beginner">
+		    	<h2>Card title 2</h2>
+		    	<p>Card description 2</p>
+		 </div>
+		 <div class="card" interests="Tell stories, Project management" experience="Advanced">
+		    	<h2>Card title 3</h2>
+		    	<p>Card description 3</p>
+		</div>
+	</div>
+	
+	<script>
+
+		// object to store button responses
+	let responses = {
+	question1: null,
+	question2: [],
+	question3: null
+	};
+
+	// function to handle button selection
+	function selectButton(question, button) {
+		// reset other buttons in the group
+		let buttons = document.querySelectorAll(".question:nth-of-type(" + question + ") .button");
+		buttons.forEach(function(btn) {
+			if (btn.getAttribute('type') === 'radio') {
+				btn.classList.remove("button-selected");
+			}
+		});
+		// select the clicked button
+		let selectedButton = document.querySelector(".question:nth-of-type(" + question + ") .button:nth-of-type(" + button + ")");
+		selectedButton.classList.add("button-selected");
+		// store response
+		if (question === 1) {
+			responses.question1 = button;
+		} 
+		if (question === 3) {
+			responses.question3 = button;
+		}
+		else if (question === 2) {
+			let index = responses.question2.indexOf(button);
+
+			if (index > -1) {
+				responses.question2.splice(index, 1);
+			} else {
+				responses.question2.push(button);
+			}
+		}
+		console.log(responses);
+	}
+		
+		
+	function sortCards() {
+		  const cardsContainer = document.querySelector(".card-container");
+		  const cards = Array.from(cardsContainer.querySelectorAll(".card"));
+
+		  cards.sort(function(cardA, cardB) {
+		    const selectedSkills = getSelectedValues("#skills-select");
+		    const selectedFocuses = getSelectedValues("#focuses-select");
+
+		    let cardAScore = 0;
+		    let cardBScore = 0;
+
+		    selectedSkills.forEach(function(skill) {
+		      if (cardA.getAttribute("skill").includes(skill)) {
+			cardAScore++;
+		      }
+		      if (cardB.getAttribute("skill").includes(skill)) {
+			cardBScore++;
+		      }
+		    });
+
+		    selectedFocuses.forEach(function(focus) {
+		      if (cardA.getAttribute("focus").includes(focus)) {
+			cardAScore++;
+		      }
+		      if (cardB.getAttribute("focus").includes(focus)) {
+			cardBScore++;
+		      }
+		    });
+
+		    return cardBScore - cardAScore;
+		  });
+
+		  cards.forEach(function(card) {
+		    cardsContainer.appendChild(card);
+		  });
+	}
+    
+   <script type="module" src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"></script>
+    <spline-viewer url="https://prod.spline.design/LEvjG3OETYd2GsRw/scene.splinecode"></spline-viewer>
+		
+		
+	</script>
+</body>
+</html>
